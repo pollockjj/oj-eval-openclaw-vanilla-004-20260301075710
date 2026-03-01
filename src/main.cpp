@@ -1302,6 +1302,8 @@ int main() {
 
     std::string line;
     while (std::getline(std::cin, line)) {
+        // Strip trailing \r if present (Windows line endings)
+        if (!line.empty() && line.back() == '\r') line.pop_back();
         auto args = tokenize(line);
         if (args.empty()) continue; // blank line
 
