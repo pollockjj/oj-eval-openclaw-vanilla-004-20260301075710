@@ -664,8 +664,10 @@ bool isValidPrice(const std::string &s) {
     }
     if (dot_pos == 0) return false; // no digits before dot
     if (dot_pos != -1 && dot_pos == (int)s.length() - 1) return false; // trailing dot
-    // Must have at least one digit
+    // Must have at least one digit (not just dots)
     if (dot_count == (int)s.length()) return false;
+    // If has decimal point, must have exactly 2 decimal places
+    if (dot_pos != -1 && (int)s.length() - dot_pos - 1 != 2) return false;
     return true;
 }
 
